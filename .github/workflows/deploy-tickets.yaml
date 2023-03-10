@@ -13,13 +13,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: cd tickets && docker build -t wernerravil/tickets .
-      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-      - run: docker push wernerravil/tickets
-      - uses: digitalocean/action-doctl@v2
-        with:
-          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-      - run: doctl kubernetes cluster kubeconfig save ticketing
-      - run: kubectl rollout restert deployment tickets-depl
+      # - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      #   env:
+      #     DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      #     DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      # - run: docker push wernerravil/tickets
+      # - uses: digitalocean/action-doctl@v2
+      #   with:
+      #     token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      # - run: doctl kubernetes cluster kubeconfig save ticketing
+      # - run: kubectl rollout restert deployment tickets-depl
+      - run: echo 'Builded.'
